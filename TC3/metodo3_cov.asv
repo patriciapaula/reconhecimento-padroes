@@ -1,0 +1,10 @@
+function C=metodo3_cov(X)
+    N=size(X,1);
+    
+end
+
+function R=correlacao(n,)
+    for i=1:N,
+        r(i) = (i-1)/i *  + (X(i,:)-M)'*(X(i,:)-M);
+    end
+end

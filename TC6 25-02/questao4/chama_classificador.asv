@@ -1,0 +1,23 @@
+function [result]=chama_classificador(dados,c1,c2,c3)
+    for i=1:size(dados,1)
+        ponto=dados(i,1:2);
+        
+        result(i,1)=dados(i,1); %classe conhecida
+        result(i,2)=dados(i,2);
+        result(i,3)=dados(i,3);
+        result(i,4)=dados(i,4);
+        result(i,5)=dados(i,5);
+        
+        if dem(ponto,c2)<dem(ponto,c1) & dem(ponto,c2)<dem(ponto,c3)
+            result(i,6)=1;
+            plot(ponto(1,2),ponto(1,1),'g+');
+        else if dem(ponto,c1)<dem(ponto,c2) & dem(ponto,c1)<dem(ponto,c3)
+                result(i,6)=2;
+                plot(ponto(1,2),ponto(1,1),'c*');
+            else
+                result(i,6)=3;
+                plot(ponto(1,2),ponto(1,1),'mo');
+            end
+        end
+    end
+end

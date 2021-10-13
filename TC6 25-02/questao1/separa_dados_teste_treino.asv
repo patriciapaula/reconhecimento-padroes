@@ -1,0 +1,16 @@
+function [c1teste, c1treino, c2teste, c2treino, c3teste, c3treino]=separa_dados_teste_treino(c1, c2, c3)
+    % separando 50% teste / 50% treino 
+    
+    % class 1 59 
+    % class 2 71
+    % class 3 48
+    
+    c1teste=hernia(1:12,:);
+    c1treino=hernia(13:end,:);
+    
+    c2teste=esp(1:30,:);    
+    c2treino=esp(31:end,:);
+        
+    c3teste=c3(1:20,:);
+    c3treino=c3(21:end,:);
+end

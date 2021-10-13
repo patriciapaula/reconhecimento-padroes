@@ -1,0 +1,13 @@
+
+load wine.data;
+x=wine;
+    
+rot=x(:,1);
+x=x(:,2:end);
+
+dim=5;
+
+%usando seleção de atributos forward
+atributos=forward(x,dim);
+
+

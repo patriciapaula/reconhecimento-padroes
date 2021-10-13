@@ -1,0 +1,57 @@
+function atributos=forward(rot,x,dim);
+    atributos=0;
+    cont=0;
+    
+    col_selecionadas=[]; % colunas selecionadas
+    col_disponiveis=[];  % colunas disponiveis para serem selecionadas
+    
+    sel_am1=[]; %coluna selecionada classe i
+    sel_am2=[]; %coluna selecionada classe j
+    
+    %atribuiçao da dimensionalidade total a variavel col_disponiveis
+    for k=1:size(x,2)
+        col_disponiveis=[col_disponiveis; k];
+    end
+    
+    %ate que o numero de col disponiveis seja igual a dimensionalidade desejada
+    while (cont ~= dim)
+        cont=cont+1;
+        distancia=[];
+        
+        % de 1 ate num de col ainda disponiveis para selecao
+        for m=1:size(col_disponiveis,1)
+            amostra1=[];
+            amostra2=[];
+            
+            %col m da amostra da classe i
+            amostra1=[sel_am1 x(:,col_disponiveis(m))];
+            
+            %col m da amostra da classe j
+            amostra2=[sel_am2 x(:,col_disponiveis(cont))];
+            
+            valor=dem(amostra1, amostra2);
+            distancia= [distancia; [col_disponiveis(m) valor]];
+        end
+        [Y, I]=max(distancia);
+        
+        %linha da lista que contem a col selecionada com maior distancia
+        col_selecionadas=[col_selecionadas; distancia(I(2))];
+        
+        aux=[];
+        % de 1 ate num de col disponiveis para selecao
+        for b=1:size(col_disponiveis, 1)
+            if (col_disponiveis(b)~= col_selecionadas(cont))
+                aux=[aux; col_disponiveis(b)];
+            end
+        end
+        
+        col_disponiveis=aux;
+                
+        %numero de col selecionadas igual ao numero de col disponiveis 
+        if ((size(col_selecionadas,1))==dim) & (size(col_disponiveis,1)==1)
+            col_selecionadas=[col_selecionadas; col_disponiveis(1)];
+            cont=cont+1;
+        end
+    end
+    atributos=col_selecionadas;
+end

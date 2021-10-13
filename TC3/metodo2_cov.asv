@@ -1,0 +1,7 @@
+function C2=metodo2_cov(X)
+    l=size(X,1);
+    M=sum(X)/l;
+    N=size(X,2);
+    R=(1/N)*(X'*X);
+    C2=R-(M*M');
+end
